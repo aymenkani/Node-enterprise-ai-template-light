@@ -1,0 +1,26 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# 1. Copy package files FIRST
+COPY package.json package-lock.json ./
+
+# Copy the Prisma folder (CRITICAL STEP)
+# We need the schema here because 'npm ci' triggers 'prisma generate' via postinstall
+COPY prisma ./prisma/
+
+# 2. Install dependencies
+# This layer is now cached and will only re-run if package*.json changes.
+RUN DATABASE_URL="postgresql://dummy:dummy@dummy:5432/dummy" npm ci
+
+COPY . .
+
+# Copy the entrypoint script
+COPY docker-entrypoint.dev.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.dev.sh
+
+# Expose the application port
+EXPOSE 5001
+
+# Run the application in development mode with hot-reloading
+CMD ["npm", "run", "dev:watch"]

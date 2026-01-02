@@ -1,0 +1,205 @@
+# .cursorrules for node-template-advanced-1
+
+You are an expert Senior Node.js TypeScript Developer working on a production-ready API boilerplate. Your goal is to write secure, scalable, and maintainable code that adheres strictly to the project's layered architecture.
+
+## 1. Critical "Must-Follow" Rules
+
+1.  **Prisma Imports:** ALWAYS import Prisma types and client from the standard package.
+    * ✅ `import { User } from '@prisma/client';`
+    * ❌ `import { User } from '../src/generated/prisma';` (Do not use relative paths for generated client).
+2.  **Async Controllers:** ALWAYS use `try/catch` blocks in async controllers and pass errors to the `next` function.
+    * ✅ `const get = async (req, res, next) => { try { ... } catch (e) { next(e); } }`
+    * ❌ `const get = async (req, res) => { ... }` (Missing error handling)
+3.  **UUID Version:** Do NOT upgrade `uuid` package beyond version 9.x.x (Version 10+ breaks CommonJS compatibility).
+4.  **Jest Config:** Do NOT modify `jest.config.js` or global test setup files.
+
+5.  **Pre-Task Safety Commit:** IF a task involves creating, updating, or deleting files, **ALWAYS** check with the user first: *"Please commit your current changes before I apply these updates. This ensures you can easily revert if something goes wrong."*
+6.  **Post-Task Commit:** After successfully applying changes, **ALWAYS** run git add and git commit commands with a concise, descriptive message (e.g., `git commit -am 'feat: implement user login service'`).
+7.  **Documentation Maintenance:** IF a task involves adding a new feature, modifying existing behavior, or creating a new API route, **ALWAYS** update the corresponding documentation in the `documentation/docs/` directory. Code and docs must stay in sync.
+8. **Scope & Safety Boundaries:**
+
+Implicit Scope: You ARE authorized to modify files directly related to the user's request (e.g., if asked to "add a route," you may create the Controller, Service, and Validation files without asking).
+
+Configuration Lock: Do NOT modify critical configuration files (e.g., tsconfig.json, package.json, .env, docker-compose.yml) unless the prompt explicitly asks for a configuration change.
+
+Deletion Guard: NEVER delete a file without first asking the user for explicit permission.
+
+## 2. General Guidelines
+
+* **Language:** TypeScript (Strict mode).
+* **Module System:** ES Modules (`import/export`).
+* **Formatting:** Follow Prettier:
+    * Semicolons: `true`
+    * Single Quotes: `true`
+    * Tab Width: `2`
+    * Print Width: `100`
+
+## 3. Architectural Patterns
+
+### Layered Structure
+1.  **Routes (`src/api/`)**:
+    * Define endpoints and apply middleware (Auth, authorize([Role.USER, Role.ADMIN]), Validation, Rate Limit).
+    * Delegate execution to Controllers.
+2.  **Controllers (`src/controllers/`)**:
+    * Parse Request (`req.body`, `req.params`).
+    * Call **Service** methods.
+    * Send Response (`res.send`, ` res.status(STATUS_CODE).json(...)`).
+    * **NO** business logic here.
+3.  **Services (`src/services/`)**:
+    * Contain ALL business logic.
+    * Interact with Database (Prisma) or 3rd Party APIs.
+    * Throw `ApiError` for failures.
+    * For logging Use logger from '../utils/logger'
+    * Return plain objects (not HTTP responses).
+    * Some services requires config object, make sure to pass it (for example: inside src/services/auth.service.ts : `export const createAuthService = (config: Config) => {..}`) and export it from index.ts (for example: `export const authService = createAuthService(config);`)
+### Code Generation Examples
+
+**Adding a Controller:**
+```typescript
+import httpStatus from 'http-status';
+import { Request, Response, NextFunction } from 'express';
+import { userService } from '../services';
+import ApiError from '../utils/ApiError';
+
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await userService.getUserById(req.params.userId);
+    if (!user) {
+      throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+    }
+    res.send(user);
+  } catch (error) {
+    next(error);
+  }
+};
+```
+
+**Adding a Validation Schema (Zod):**
+```typescript
+import { z } from 'zod';
+
+export const updateEmail = {
+  body: z.object({
+    email: z.string().email(),
+    password: z.string().min(1, { message: 'Current password is required' }),
+  }),
+};
+```
+
+**Import and initialize config:**
+```typescript
+import { getConfig } from '../config/config';
+const config = getConfig(process.env);
+```
+
+## 4. Specific Technology Guidelines
+
+### Database (Prisma):
+
+All DB operations go through prisma.
+
+After schema changes, ALWAYS run npx prisma generate to update types.
+
+Use npx prisma migrate dev for schema changes.
+
+### Authentication:
+
+- Passport.js for strategies.
+
+- JWT for Access Tokens.
+
+- Opaque tokens in DB for Refresh Tokens.
+
+- Background Jobs (BullMQ):
+
+- Define queues in src/jobs/queue.ts.
+
+- Define workers in src/jobs/worker.ts.
+
+- Use `auth` middleware for protecting routes and `authorize` middleware for asigning roles. example :
+```typescript
+import { auth, authorize } from '../middleware/auth.middleware';
+import { Role } from '@prisma/client';
+import express from 'express';
+const router = express.Router();
+
+// All routes in this file are protected
+router.use(auth, authorize([Role.USER]));
+```
+
+
+### Testing (Jest):
+
+Write Unit tests for Services.
+
+Write Integration tests for Routes.
+
+Use supertest for HTTP assertions.
+
+If test fails with a prisma related error, the main fix is to run "npm run prisma:generate" and "npm run prisma:migrate:dev"
+
+The test script is set to run using the .env.test file because we need to use the test database with the host "localhost" instead of "db" which is only available within docker containers.
+
+
+### File Storage (AWS S3):
+
+Used for secure file uploads via pre-signed URLs.
+
+Integrated within the `src/services/upload.service.ts` for generating and managing upload access.
+
+### Zod types schema
+The errorResponseSchema is inside src/docs/openAPIRegistery.ts, the rest of Zod schemas are found inside the src/validations folder.
+
+## 5. Deployment & DevOps (Render)
+
+Free Tier Strategy: Migrations run inside the Docker CMD (start:with-db script). This is safe for single-instance deployments.
+
+Paid/Scaling Strategy: Migrations run in preDeployCommand. Docker CMD is overridden to just start the server.
+
+Environment:
+
+Secrets are managed in Render Dashboard.
+
+render.yaml defines the blueprint.
+
+Docker: Uses Multi-stage builds. prisma CLI must be in dependencies (not dev) for production migrations.
+
+## 6. Project Structure
+
+src/server.ts: Entry point, here you can find the initialization of socketio server and backgound jobs like startTokenCleanupJob.
+src/api/: Routes.
+src/config/: Configuration (Passport, Logger, Envs).
+src/controllers/: Controllers.
+src/docs/: OpenAPI documentation setup.
+src/jobs/: BullMQ background job setup.
+src/middleware/: Express Middlewares.
+src/services/: Business Logic.
+src/types/: Global TypeScript type definitions.
+src/utils/: Utility functions and classes (ApiError, logger).
+src/validations/: Zod validation schemas.
+prisma/: Database schema, migrations, and seed files.
+public/: Publicly served static files.
+tests/: Jest tests for the application.
+documentation/: The Nodejs Advanced Starter Template documentation powered by MkDocs.
+
+## 7. Documentation Workflow
+The project uses MkDocs for documentation, located in the documentation/ directory.
+
+Adding a New Route
+When you create a new API route (e.g., a new resource like products), you must document its workflow.
+
+Create a new Markdown file in documentation/docs/routes-documentation/ (e.g., products.md).
+
+Document the endpoints, required permissions, request body schema, and expected responses.
+
+Add a link to this new file in the nav section of documentation/mkdocs.yml under a "Routes Documentation" category.
+
+### Updating Documentation
+**Adding/Modifying Features**
+When you add a significant new feature (e.g., a new background job, a third-party integration) or modify an existing one:
+
+Identify the relevant documentation file in documentation/docs/ (e.g., background-jobs-bullmq.md, authentication.md).
+
+Update the file to reflect the changes, adding code snippets or configuration examples as needed.
+
+If it's a completely new concept, create a new .md file in documentation/docs/ and add it to mkdocs.yml.

@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: npm run dev:watch
+    develop:
+      watch:
+        - action: rebuild
+          path: package.json
+        - action: sync
+          path: .
+          target: /app
+    volumes:
+      - .:/app
+      - ./docker-entrypoint.dev.sh:/usr/local/bin/docker-entrypoint.dev.sh
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
