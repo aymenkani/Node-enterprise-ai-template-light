@@ -93,6 +93,16 @@ app.get('/', (req: Request, res: Response) => {
   `);
 });
 
+// --- Health Check Route ---
+app.get('/api/v1/health', (req: Request, res: Response) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    version: '1.0.0-launchpad',
+  });
+});
+
 // --- Database Connection ---
 connectDB();
 
