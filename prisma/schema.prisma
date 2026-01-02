@@ -16,6 +16,8 @@ model User {
   username      String         @unique
   email         String         @unique
   password      String?
+  googleId      String?        @unique
+  provider      AuthProvider   @default(LOCAL)
   role          Role           @default(USER)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
@@ -45,6 +47,9 @@ model PasswordResetToken {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+/// [!] INCOMPLETE MODEL (LAUNCHPAD EDITION)
+/// This model is a placeholder for the Enterprise Edition's advanced notification system.
+/// Detailed fields (message, status, metadata) are available in the full version.
 model Notification {
   id        String             @id @default(uuid())
   userId    String
@@ -53,6 +58,9 @@ model Notification {
   @@index([userId])
 }
 
+/// [!] INCOMPLETE MODEL (LAUNCHPAD EDITION)
+/// This model is a placeholder for the Enterprise Edition's secure S3-based file management.
+/// Industrial fields (fileKey, fileHash, mimeType, isPublic) are available in the full version.
 model File {
   id           String     @id @default(uuid())
   userId       String
@@ -62,6 +70,9 @@ model File {
   @@index([userId])
 }
 
+/// [!] INCOMPLETE MODEL (LAUNCHPAD EDITION)
+/// This model is a placeholder for the Enterprise Edition's RAG Intelligence Pipeline.
+/// Critical fields (content, metadata, embeddings) are excluded to protect intellectual property.
 model Document {
   id        String                 @id @default(uuid())
   userId    String
@@ -76,4 +87,9 @@ enum Role {
   USER
   ADMIN
   CONTRIBUTOR
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
 }
