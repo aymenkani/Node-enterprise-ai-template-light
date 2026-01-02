@@ -1,8 +1,32 @@
 # Node.js Advanced Starter Template
 
+> [!TIP]
+> ### 🚀 Unlock the Full Power of the Node.js Enterprise Platform
+> This repository is the **Launchpad Edition**—a powerful architectural foundation. For the **Complete Enterprise Edition** including Multi-tenancy, CI/CD, Advanced Security, and more, visit the [Official Platform Page](https://aymenkani.github.io/nodejs-enterprise-platform/).
+
+---
+
 # Introduction and Project Overview
 
-Welcome to the Node.js Advanced Starter Template documentation! This template is designed to provide a robust, scalable, and feature-rich foundation for building modern Node.js API applications. It integrates a selection of industry-standard tools and best practices to accelerate your development process and ensure high-quality, maintainable code.
+Welcome to the Node.js Advanced Starter Template documentation! This template is designed to provide a robust, scalable, and feature-rich foundation for building modern Node.js API applications.
+
+## 🌟 Go Pro: Node.js Enterprise Template
+
+While this starter template provides a world-class architecture, the **Node.js Enterprise Template** is the complete production-ready engine used by top-tier startups and enterprises.
+
+| Feature | Launchpad (This) | Enterprise Edition |
+| :--- | :---: | :---: |
+| **Layered Architecture** | ✅ | ✅ |
+| **Prisma & Postgres** | ✅ | ✅ |
+| **Basic RAG Pipeline** | ✅ | ✅ |
+| **Multi-Tenancy (SaaS)** | ❌ | ✅ |
+| **Advanced RBAC & Auth** | ❌ | ✅ |
+| **Zero-Downtime CI/CD** | ❌ | ✅ |
+| **Industrial Monitoring** | ❌ | ✅ |
+
+[**Get the Full Version Now →**](https://aymenkani.github.io/nodejs-enterprise-platform/)
+
+---
 
 ## What is this Template For?
 
