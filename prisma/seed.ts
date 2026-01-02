@@ -7,8 +7,8 @@ const config = getConfig(process.env);
 
 async function main() {
   // Use Environment variables with fallbacks for local dev
-  const adminEmail = config.admin.email || 'admin@example.com';
-  const adminPassword = config.admin.password || 'adminpassword123';
+  const adminEmail =  'admin@example.com';
+  const adminPassword = 'adminpassword123';
 
 
   // Safety Check: Warn if using default password in production
@@ -28,7 +28,7 @@ async function main() {
         email: adminEmail,
         password: hashedPassword,
         role: Role.ADMIN,
-        passwordHistory: [hashedPassword],
+        // the enterprise edition has more fields
       },
     });
     
