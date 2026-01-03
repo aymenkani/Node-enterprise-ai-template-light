@@ -76,12 +76,25 @@ Railway offers a unique "Infrastructure-as-Code" experience through its modular 
 ### Instant Infrastructure (Drag & Drop)
 One of Railway's most powerful features is the ability to provision infrastructure using Docker Compose files. 
 
-We provide two pre-configured templates for this purpose:
-*   `docker-compose.postgres.railway.yml`
-*   `docker-compose.redis.railway.yml`
+1.  **Deploy Redis & Postgres:**
+    - Drag and drop `docker-compose.redis.railway.yml` into the Railway dashboard playground.
+    - Drag and drop `docker-compose.postgres.railway.yml` into the same playground.
+    - Hit **Deploy** for both services.
 
-> [!TIP]
-> **Pro Tip:** You can simply drag and drop these `.railway.yml` files into the Railway dashboard playground to instantly deploy managed PostgreSQL and Redis instances.
+### Deploying the Application
+
+After your infrastructure is live, follow these steps to deploy the main API:
+
+1.  **Push to GitHub:** Ensure your project code is pushed to your own GitHub repository.
+2.  **Import to Railway:** In your Railway project, click **+ New** -> **GitHub Repo** and select your repository.
+3.  **Environment Variables:**
+    - Navigate to the **Variables** tab of the newly created service.
+    - Copy the contents of your local `.env.railway` file.
+    - Paste them into the Railway variables input field.
+4.  **Configuration Check:**
+    - Go to the **Settings** tab.
+    - Under the **General** or **Deploy** section, ensure that `railway.toml` is selected as the configuration file for the service.
+5.  **Finalize:** Click **Deploy**.
 
 ### Guided Deployment
 For a deep dive into the "easy" process of deploying this entire template on Railway, including environment setup and service linking, follow our dedicated guide.

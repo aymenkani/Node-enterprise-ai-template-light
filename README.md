@@ -18,7 +18,7 @@ While this starter template provides a world-class architecture, the **Node.js E
 | :--- | :---: | :---: |
 | **Layered Architecture** | ✅ | ✅ |
 | **Prisma & Postgres** | ✅ | ✅ |
-| **Standard RAG Pipeline** | ✅ | ✅ |
+| **Standard RAG Pipeline** | ❌ | ✅ |
 | **Multimodal RAG (Image Analysis)** | ❌ | ✅ |
 | **Smart Content Deduplication** | ❌ | ✅ |
 | **Self-Healing Architecture** | ❌ | ✅ |
@@ -57,7 +57,7 @@ This template is ideal for developers and teams looking to kickstart new API pro
 
 The **Node.js Multimodal RAG Starter** is not just a boilerplate; it's a production-ready engine designed to handle the complexities of modern AI applications.
 
-### 1. 🧠 Multimodal RAG Pipeline (The Killer Feature)
+### 1. 🧠 Multimodal RAG Pipeline 
 - **Multimodal Capabilities:** Beyond text—ingest and analyze images. Automatically generates descriptions and stores them for semantic search.
 - **Smart Deduplication:** Content-hash comparison prevents duplicate uploads, saving you money on storage and Vector DB tokens.
 - **Self-Healing Architecture:** Background jobs monitor ingestion. Failed or hanging processes are automatically cleaned up, keeping your data "pristine."
@@ -79,7 +79,7 @@ The **Node.js Multimodal RAG Starter** is not just a boilerplate; it's a product
 - **State Management:** Built-in "Read/Unread" tracking to prevent user spam.
 
 ### 5. ⚙️ Admin & User Management
-- **Command Center:** Admin routes to ban/delete users, update details, and broadcast system-wide notifications instantly.
+- **Command Center:** Admin routes to update/delete users, update details, and broadcast system-wide notifications instantly.
 - **User Dashboard:** Complete CRUD for users to manage their profiles, emails, and own files.
 
 ### 6. 🏗️ Professional Infrastructure
@@ -148,6 +148,28 @@ This template is designed for:
 *   **Teams:** Aiming for consistency and best practices across their Node.js projects.
 
 By leveraging this template, you can significantly reduce setup time and focus on delivering value faster, with confidence in the underlying architecture.
+
+## Deploying to Railway (Recommended)
+
+This template is fully optimized for [Railway](https://railway.app/), offering the fastest and most reliable deployment experience.
+
+### ⚡ Quick Deployment Steps
+
+1.  **Provision Infrastructure:**
+    - Drag and drop `docker-compose.redis.railway.yml` into your Railway project to instantly deploy Redis.
+    - Drag and drop `docker-compose.postgres.railway.yml` to deploy PostgreSQL.
+    - Hit **Deploy** for both.
+
+2.  **Deploy the Application:**
+    - Push your project code to your own GitHub repository.
+    - In Railway, click **+ New** -> **GitHub Repo** and import your repository.
+    - **Before hitting Deploy**, go to the **Variables** tab of your new service.
+    - Copy all variables from `.env.railway` and paste them into the Railway variables field.
+    - Go to **Settings** and ensure the **Railway.toml** file is selected as the config file.
+    - Hit **Deploy**.
+
+For a detailed step-by-step guide with screenshots, check out our online tutorial:
+[👉 Full Railway Deployment Tutorial](https://nodejs-starter-template-lv1-production-db8d.up.railway.app/client/railway.html)
 
 ## Deploying to Render
 
