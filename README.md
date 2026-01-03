@@ -151,18 +151,19 @@ By leveraging this template, you can significantly reduce setup time and focus o
 
 ## Deploying to Railway (Recommended)
 
-This template is fully optimized for [Railway](https://railway.app/), offering the fastest and most reliable deployment experience.
+This template is fully optimized for [Railway](https://railway.com?referralCode=2psx_t), offering the fastest and most reliable deployment experience.
 
 ### ⚡ Quick Deployment Steps
 
 1.  **Provision Infrastructure:**
     - Drag and drop `docker-compose.redis.railway.yml` into your Railway project to instantly deploy Redis.
+    - Hit **Deploy**.
     - Drag and drop `docker-compose.postgres.railway.yml` to deploy PostgreSQL.
-    - Hit **Deploy** for both.
+    - Hit **Deploy**.
 
 2.  **Deploy the Application:**
     - Push your project code to your own GitHub repository.
-    - In Railway, click **+ New** -> **GitHub Repo** and import your repository.
+    - In Railway, click **+ create** -> **GitHub Repo** and import your repository.
     - **Before hitting Deploy**, go to the **Variables** tab of your new service.
     - Copy all variables from `.env.railway` and paste them into the Railway variables field.
     - Go to **Settings** and ensure the **Railway.toml** file is selected as the config file.
