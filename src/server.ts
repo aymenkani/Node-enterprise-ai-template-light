@@ -107,10 +107,12 @@ app.get('/api/v1/health', (req: Request, res: Response) => {
 connectDB();
 
 // --- Redis Connection ---
-const redis = new Redis({
-  host: config.redis.host,
-  port: config.redis.port,
-  password: config.redis.password,
+const redis = config.redis.url
+  ? new Redis(config.redis.url)
+  : new Redis({
+      host: config.redis.host,
+      port: config.redis.port,
+      password: config.redis.password,
 });
 
 redis.on('connect', () => {
