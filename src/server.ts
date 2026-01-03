@@ -99,7 +99,7 @@ app.get('/api/v1/health', (req: Request, res: Response) => {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    version: '1.0.0-launchpad',
+    version: '2.0.0-launchpad',
   });
 });
 
