@@ -14,15 +14,19 @@ Welcome to the Node.js Advanced Starter Template documentation! This template is
 
 While this starter template provides a world-class architecture, the **Node.js Enterprise Template** is the complete production-ready engine used by top-tier startups and enterprises.
 
-| Feature | Launchpad (This) | Enterprise Edition |
+| Feature | Launchpad (Free) | Advanced Edition (Node.js Multimodal RAG Starter) |
 | :--- | :---: | :---: |
 | **Layered Architecture** | ✅ | ✅ |
 | **Prisma & Postgres** | ✅ | ✅ |
-| **Basic RAG Pipeline** | ✅ | ✅ |
-| **Multi-Tenancy (SaaS)** | ❌ | ✅ |
-| **Advanced RBAC & Auth** | ❌ | ✅ |
-| **Zero-Downtime CI/CD** | ❌ | ✅ |
-| **Industrial Monitoring** | ❌ | ✅ |
+| **Standard RAG Pipeline** | ✅ | ✅ |
+| **Multimodal RAG (Image Analysis)** | ❌ | ✅ |
+| **Smart Content Deduplication** | ❌ | ✅ |
+| **Self-Healing Architecture** | ❌ | ✅ |
+| **Dual Login (Google OAuth + Email)** | ❌ | ✅ |
+| **Token Blacklisting & Secure Logouts**| ❌ | ✅ |
+| **Smart Storage (Signed URLs)** | ❌ | ✅ |
+| **Real-time Offline Queued Notifications**| ❌ | ✅ |
+| **Admin Controls (Ban/Delete/Broadcast)**| ❌ | ✅ |
 
 [**Get the Full Version Now →**](https://aymenkani.github.io/nodejs-enterprise-platform/)
 
@@ -49,16 +53,43 @@ This template is ideal for developers and teams looking to kickstart new API pro
 *   **Testing:** Comprehensive testing setup with Jest for unit and integration tests, including database testing strategies.
 *   **CI/CD:** Pre-configured GitHub Actions workflows for continuous integration (linting, testing, building) and continuous deployment.
 
-## AI & RAG Intelligence
+## 🚀 Why Upgrade to the Advanced Version?
 
-This boilerplate features a first-class **RAG (Retrieval-Augmented Generation) Intelligence Pipeline**, allowing you to build context-aware AI agents that "speak" to your data.
+The **Node.js Multimodal RAG Starter** is not just a boilerplate; it's a production-ready engine designed to handle the complexities of modern AI applications.
 
-1.  **Ingestion:** Automatically parse PDFs and text files, or use **Visual RAG** to extract meaning from images using Gemini Vision.
-2.  **Storage:** Securely store documents in **Cloudflare R2** with S3-compatible API and pre-signed URL support for private access.
-3.  **Vector Store:** Chunks and embeds data into a PostgreSQL `pgvector` store for lightning-fast semantic retrieval.
-4.  **Chat Agent:** A streaming AI agent that rewrites queries for better context, retrieves relevant "knowledge", and answers with smart citations.
+### 1. 🧠 Multimodal RAG Pipeline (The Killer Feature)
+- **Multimodal Capabilities:** Beyond text—ingest and analyze images. Automatically generates descriptions and stores them for semantic search.
+- **Smart Deduplication:** Content-hash comparison prevents duplicate uploads, saving you money on storage and Vector DB tokens.
+- **Self-Healing Architecture:** Background jobs monitor ingestion. Failed or hanging processes are automatically cleaned up, keeping your data "pristine."
+- **Total AI Experience:** ChatGPT-like interface with a first-class citation system providing secure links to source files.
 
-Check the [RAG Intelligence Pipeline Documentation](documentation/docs/rag-intelligence-pipeline.md) for a deep dive into the architecture.
+### 2. 🛡️ Fortress Authentication & Security
+- **Dual Login Sync:** Seamlessly supports both Google OAuth and standard Email/Password authentication.
+- **Advanced Session management:** Refresh Token rotation with persistent blacklisting for absolute logout security.
+- **Secure Email Flows:** Hashed-token validation for Email Verification and Password Resets.
+- **Granular RBAC:** Deeply integrated Role-Based Access Control (Admin vs. User) with ready-to-use middleware.
+
+### 3. ☁️ Smart Storage (Cloudflare R2 Integration)
+- **Privacy First:** Native support for "Public" vs "Private" file visibility.
+- **Secure Delivery:** Generates Temporary Signed URLs (1-hour expiry) for source citations, keeping your main bucket completely locked down.
+
+### 4. ⚡ Real-Time Notification System (Socket.IO)
+- **Hybrid Delivery:** Blazing fast real-time updates for active users.
+- **Offline Queuing:** Missed a notification? It's saved to Postgres and automatically delivered the moment the user reconnects.
+- **State Management:** Built-in "Read/Unread" tracking to prevent user spam.
+
+### 5. ⚙️ Admin & User Management
+- **Command Center:** Admin routes to ban/delete users, update details, and broadcast system-wide notifications instantly.
+- **User Dashboard:** Complete CRUD for users to manage their profiles, emails, and own files.
+
+### 6. 🏗️ Professional Infrastructure
+- **Background Heavy Lifting:** Heavy RAG tasks are offloaded to dedicated worker threads via BullMQ.
+- **Production-Ready Schema:** Fully modeled Prisma architecture for Users, Vectors, Files, Notifications, and Jobs.
+- **Docker-First:** Optimized multi-stage Docker builds ready for instant deployment to Railway or Render.
+
+---
+
+## AI & RAG Intelligence (Launchpad Edition)
 
 ## Comprehensive Documentation
 
