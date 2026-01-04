@@ -56,7 +56,7 @@ The Pro version requires specific configuration. Do this **before** pushing code
 
 1.  Open `.env.railway` in your local Pro folder.
 2.  Copy the entire content.
-3.  In Railway, go to the **Variables** tab.
+3.  In Railway, inside the Node.js service go to the **Variables** tab.
 4.  Click **Raw Editor** and paste the new variables.
 5.  Click **Update Variables**.
 
@@ -64,7 +64,7 @@ The Pro version requires specific configuration. Do this **before** pushing code
 > Replacing placeholders in the raw editor is the fastest way to sync your config.
 
 ### C. Link Config-as-Code
-1.  In **Settings**, scroll to the **Config-as-Code** section.
+1.  In Railway, inside the Node.js service, go to **Settings**, scroll to the **Config-as-Code** section.
 2.  Click **Add File Path**.
 3.  Type: `/railway.toml`
 
@@ -72,7 +72,7 @@ The Pro version requires specific configuration. Do this **before** pushing code
 Force-push the new version to your existing repository.
 
 #### Get your Repository URL:
-1.  In Railway **Settings** > **Source**, click the link to your GitHub repo.
+1.  In Railway, inside the Node.js service, go to **Settings** > **Source**, click the link to your GitHub repo.
 2.  On GitHub, click the green **Code** button and copy the **HTTPS URL**.
 
 #### Execute the Upgrade:
