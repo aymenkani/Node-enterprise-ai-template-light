@@ -2,7 +2,7 @@
 
 > [!TIP]
 > ### 🚀 Unlock the Full Power of the Node.js Enterprise Platform
-> This repository is the **Launchpad Edition**—a powerful architectural foundation. For the **Complete Enterprise Edition** including Multi-tenancy, CI/CD, Advanced Security, and more, visit the [Official Platform Page](https://aymenkani.github.io/nodejs-enterprise-platform/).
+> This repository is the **Launchpad Edition**—a powerful architectural foundation. For the **Complete Enterprise Edition** including Multi-tenancy, CI/CD, Advanced Security, and more, visit the [Official Platform Page](https://aymenkani.github.io/nodeJs-multimodal-rag-starter/).
 
 ---
 
@@ -28,7 +28,7 @@ While this starter template provides a world-class architecture, the **Node.js E
 | **Real-time Offline Queued Notifications**| ❌ | ✅ |
 | **Admin Controls (Ban/Delete/Broadcast)**| ❌ | ✅ |
 
-[**Get the Full Version Now →**](https://aymenkani.github.io/nodejs-enterprise-platform/)
+[**Get the Full Version Now →**](https://aymenkani.github.io/nodeJs-multimodal-rag-starter/)
 
 ---
 
