@@ -6,6 +6,8 @@ builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile.railway"
 
 [deploy]
+preDeployCommand = "sh ./deploy.sh"
+
 # 1. Healthcheck: Railway will ping this to ensure the app is running.
 # If you don't have a /health route, change this to "/"
 healthcheckPath = "/api/v1/health"
@@ -15,8 +17,8 @@ healthcheckTimeout = 100
 restartPolicyType = "ON_FAILURE"
 
 # 3. Start Command: This overrides the CMD in the Dockerfile.
-# We explicitly run migrations and seeding before starting the server.
-startCommand = "sh -c 'npm run start:with-db'"
+# Migrations and seeding now happen in preDeployCommand via deploy.sh
+startCommand = "npm start"
 
 # 4. Replicas: Start with 1 instance (scale up later if needed)
 numReplicas = 1

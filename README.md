@@ -155,21 +155,15 @@ This template is fully optimized for [Railway](https://railway.com?referralCode=
 
 ### ⚡ Quick Deployment Steps
 
-1.  **Provision Infrastructure:**
-    - Drag and drop `docker-compose.redis.railway.yml` into your Railway project to instantly deploy Redis.
-    - Hit **Deploy**.
-    - Drag and drop `docker-compose.postgres.railway.yml` to deploy PostgreSQL.
-    - Hit **Deploy**.
+1. **This Template can be found on Railway Marketplace**:
+Just click on the button below and follow the instructions to deploy your application using this template.
 
-2.  **Deploy the Application:**
-    - Push your project code to your own GitHub repository.
-    - In Railway, click **+ create** -> **GitHub Repo** and import your repository.
-    - **Before hitting Deploy**, go to the **Variables** tab of your new service.
-    - Copy all variables from `.env.railway` and paste them into the Railway variables field.
-    - Go to **Settings** and ensure the **Railway.toml** file is selected as the config file.
-    - Hit **Deploy**.
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/nodejs-multimodal-rag-starter?referralCode=2psx_t&utm_medium=integration&utm_source=template&utm_campaign=generic)
 
-For a detailed step-by-step guide with screenshots, check out our online tutorial:
+2. **If you want to deploy it manually using the paid version of this template**:
+First you have to purchace the Pro Version of this template from here: [nodeJs advanced Multimodal Rag Starter](https://aymenkani.github.io/nodeJs-multimodal-rag-starter/)
+
+Then, Follow this detailed step-by-step guide with screenshots to deploy your application to Railway:
 [👉 Full Railway Deployment Tutorial](https://nodejs-starter-template-lv1-production-db8d.up.railway.app/client/railway.html)
 
 ## Deploying to Render

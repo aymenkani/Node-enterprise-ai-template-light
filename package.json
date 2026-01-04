@@ -10,7 +10,6 @@
     "--- BUILD & PROD ---": "Scripts for building and running in production",
     "build": "npm run prisma:generate && tsc && tsc prisma/seed.ts --outDir dist --target ES2022 --module CommonJS --moduleResolution node --esModuleInterop --skipLibCheck",
     "start": "node dist/server.js",
-    "start:with-db": "npm run prisma:migrate:deploy && npm run seed:prod && node dist/server.js",
     "--- DEV ---": "Scripts for local development",
     "dev": "ts-node src/server.ts",
     "dev:watch": "nodemon --watch 'src/**/*.ts' --exec ts-node src/server.ts",
