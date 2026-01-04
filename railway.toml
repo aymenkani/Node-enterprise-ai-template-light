@@ -6,7 +6,7 @@ builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile.railway"
 
 [deploy]
-preDeployCommand = "npm run prisma:migrate:deploy:seed"
+preDeployCommand = "/bin/sh -c 'npm run prisma:migrate:deploy:seed'"
 
 # 1. Healthcheck: Railway will ping this to ensure the app is running.
 # If you don't have a /health route, change this to "/"
@@ -18,7 +18,7 @@ restartPolicyType = "ON_FAILURE"
 
 # 3. Start Command: This overrides the CMD in the Dockerfile.
 # Migrations and seeding now happen in preDeployCommand via deploy.sh
-startCommand = "npm start"
+startCommand = "/bin/sh -c 'npm start'"
 
 # 4. Replicas: Start with 1 instance (scale up later if needed)
 numReplicas = 1
