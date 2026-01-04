@@ -24,7 +24,7 @@
     "--- PRISMA ---": "Database management",
     "prisma:generate": "npx prisma generate",
     "prisma:migrate:dev": "dotenv -e .env.local -- prisma migrate dev",
-    "prisma:migrate:deploy:seed": "npx wait-port -t 30000 db.railway.internal:5432 && prisma migrate deploy && npm run seed:prod",
+    "prisma:migrate:deploy:seed": "npx wait-port -t 30000 ${PGHOST}:${PGPORT} && prisma migrate deploy && npm run seed:prod",
     "prisma:studio": "dotenv -e .env.local -- prisma studio",
     "prisma:reset": "dotenv -e .env.local -- prisma migrate reset",
     "seed": "ts-node prisma/seed.ts",
