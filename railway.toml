@@ -18,7 +18,7 @@ restartPolicyType = "ON_FAILURE"
 
 # 3. Start Command: This overrides the CMD in the Dockerfile.
 # Migrations and seeding now happen in preDeployCommand via deploy.sh
-startCommand = "npm start"
+startCommand = "sh -c 'npm start'"
 
 # 4. Replicas: Start with 1 instance (scale up later if needed)
 numReplicas = 1

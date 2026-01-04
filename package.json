@@ -24,7 +24,7 @@
     "--- PRISMA ---": "Database management",
     "prisma:generate": "npx prisma generate",
     "prisma:migrate:dev": "dotenv -e .env.local -- prisma migrate dev",
-    "prisma:migrate:deploy:seed": "prisma migrate deploy && npm run seed:prod",
+    "prisma:migrate:deploy:seed": "prisma migrate deploy && prisma generate && npm run seed:prod",
     "prisma:studio": "dotenv -e .env.local -- prisma studio",
     "prisma:reset": "dotenv -e .env.local -- prisma migrate reset",
     "seed": "ts-node prisma/seed.ts",
@@ -80,7 +80,6 @@
     "swagger-ui-express": "^5.0.1",
     "unpdf": "^1.4.0",
     "uuid": "^9.0.1",
-    "wait-port": "^1.1.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {
