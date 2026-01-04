@@ -164,7 +164,7 @@ Just click on the button below and follow the instructions to deploy your applic
 First you have to purchace the Pro Version of this template from here: [nodeJs advanced Multimodal Rag Starter](https://aymenkani.github.io/nodeJs-multimodal-rag-starter/)
 
 Then, Follow this detailed step-by-step guide with screenshots to deploy your application to Railway:
-[👉 Full Railway Deployment Tutorial](https://nodejs-starter-template-lv1-production-db8d.up.railway.app/client/railway.html)
+[👉 Full Railway Deployment Tutorial](Upgrade_to_Pro.md)
 
 ## Deploying to Render
 
