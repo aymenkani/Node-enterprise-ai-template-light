@@ -83,7 +83,7 @@ app.get('/', (req: Request, res: Response) => {
             <p>
                 The Node.js Enterprise Launchpad is active and ready. This core template provides the foundation for scalable enterprise applications.
             </p>
-            <a href="https://aymenkani.github.io/nodejs-enterprise-platform/" class="btn">Explore Enterprise Edition</a>
+            <a href="https://aymenkani.github.io/nodeJs-multimodal-rag-starter/" class="btn">Explore Enterprise Edition</a>
             <div class="footer">
                 Powered by Node.js Enterprise Platform
             </div>
