@@ -103,31 +103,43 @@ app.get('/api/v1/health', (req: Request, res: Response) => {
   });
 });
 
-// --- Database Connection ---
-connectDB();
-
-// --- Redis Connection ---
-const redis = config.redis.url
-  ? new Redis(config.redis.url)
-  : new Redis({
-      host: config.redis.host,
-      port: config.redis.port,
-      password: config.redis.password,
-});
-
-redis.on('connect', () => {
-  logger.info('Redis connection established');
-});
-
-redis.on('error', (err) => {
-  logger.error(`Redis connection error: ${err}`);
-});
-
 // --- Start Server ---
-const PORT = config.port;
-server.listen(PORT, () => {
-  logger.info(`Server initialized and listening on port ${PORT}`);
-  logger.info(`Status dashboard available at http://localhost:${PORT}`);
-});
+const startServer = async () => {
+  try {
+    // --- Database Connection ---
+    await connectDB();
 
-export { app, server, io, redis };
+    // --- Redis Connection ---
+    const redis = config.redis.url
+      ? new Redis(config.redis.url)
+      : new Redis({
+          host: config.redis.host,
+          port: config.redis.port,
+          password: config.redis.password,
+        });
+
+    redis.on('connect', () => {
+      logger.info('Redis connection established');
+    });
+
+    redis.on('error', (err) => {
+      logger.error(`Redis connection error: ${err}`);
+    });
+
+    const PORT = config.port;
+    server.listen(PORT, () => {
+      logger.info(`Server initialized and listening on port ${PORT}`);
+      logger.info(`Status dashboard available at http://localhost:${PORT}`);
+    });
+
+    return { redis };
+  } catch (error) {
+    logger.error(`Failed to start server: ${error}`);
+    process.exit(1);
+  }
+};
+
+const serverState = startServer();
+
+export const redisPromise = serverState.then((state) => state.redis);
+export { app, server, io };
