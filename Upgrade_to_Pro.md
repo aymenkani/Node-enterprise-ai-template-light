@@ -40,7 +40,20 @@ Now, let's link your local Pro code to your fresh Railway deployment.
 *   **VS Code:** Open the extracted Pro folder (not the skeleton repo) in your editor.
 *   **Railway Service:** Ensure your Skeleton app is fully deployed on Railway from Step 1.
 
-### A. "Eject" the Service
+
+### A. Update the "db" service to use "Metal-based build environment"
+
+Before doing anything, we need to make sure the "db" service will be available when the app service is ready to connect to it.
+
+so all you need to do is:
+
+1. go to the "db" service (click on "db" service block) 
+2. on the "settings" tab, find the "Build" section
+3. Switch on the "Use Metal Build environment"
+4. Hit "deploy" for the "db" service
+5. wait until the deployment completes
+
+### B. "Eject" the Service
 Before pushing custom code, you must unlock the service from the original template metadata.
 
 1.  Go to your **Railway Dashboard**.
@@ -50,18 +63,6 @@ Before pushing custom code, you must unlock the service from the original templa
 
 > [!NOTE]
 > Ejecting does not disconnect your repo; it simply enables custom Git pushes and removes template-specific restrictions.
-
-### B. Update Environment Variables
-The Pro version requires specific configuration. Do this **before** pushing code to prevent build failures.
-
-1.  Open `.env.railway` in your local Pro folder.
-2.  Copy the entire content.
-3.  In Railway, inside the Node.js service go to the **Variables** tab.
-4.  Click **Raw Editor** and paste the new variables.
-5.  Click **Update Variables**.
-
-> [!TIP]
-> Replacing placeholders in the raw editor is the fastest way to sync your config.
 
 ### C. Link Config-as-Code
 1.  In Railway, inside the Node.js service, go to **Settings**, scroll to the **Config-as-Code** section.
@@ -90,6 +91,10 @@ git commit -m "feat: upgrade to Pro Version"
 # Force push to overwrite the skeleton code
 git push -f origin main
 ```
+
+### E. re-check step C: Link Config-as-Code
+
+Make sure that  /railway.toml  is selected in the Config-as-Code section.
 
 ---
 
